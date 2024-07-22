@@ -18,3 +18,4 @@ Cargo.lock
 
 /target
 .history
+.DS_Store

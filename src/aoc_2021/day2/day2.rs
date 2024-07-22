@@ -61,11 +61,40 @@ fn part1(file_path: &str) {
     println!("product:{product}");
 }
 
+fn part2(file_path: &str) {
+    let inst:Vec<Instruction> = load_file(file_path).map(|line| line.as_str().into()).collect();
+
+    let mut forward:u64 = 0;
+    let mut depth:u64 = 0;
+    let mut aim:u64 = 0;
+
+    for ele in inst {
+        match ele.direction {
+            Direction::Forward => {
+                forward += ele.move_by as u64;
+                depth += aim * ele.move_by as u64;
+            },
+            Direction::Up => aim -= ele.move_by as u64,
+            Direction::Down => aim += ele.move_by as u64
+        }
+    }
+    println!("forward:{forward}");
+    println!("depth:{depth}");
+    println!("aim:{aim}");
+    let product = forward * depth;
+    println!("product:{product}");
+}
+
 #[cfg(test)]
 mod tests {
-    use super::part1;
+    use super::*;
     #[test]
     fn test_day2_part1() {
-        part1("/Users/mac-m3/code/advent-of-code-rust/src/aoc_2021/day2/input.txt");
+        part1("/Users/madvish/code/advent-of-code-rust/src/aoc_2021/day2/input.txt");
+    }
+
+    #[test]
+    fn test_day2_part2() {
+        part2("/Users/madvish/code/advent-of-code-rust/src/aoc_2021/day2/input.txt");
     }
 }
