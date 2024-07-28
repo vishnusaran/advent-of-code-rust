@@ -1,8 +1,8 @@
-use std::{borrow::BorrowMut, collections::HashSet, fmt::{write, Display}};
+use std::{collections::HashSet, fmt::Display};
 use core::iter::Iterator;
 
 
-use crate::utils::file_loader::{self, load_file};
+use crate::utils::file_loader::load_file;
 
 #[derive(Debug)]
 struct GameBoard {
@@ -72,13 +72,13 @@ impl GameBoard {
     }
 
     fn add_run(&mut self, run:i32) {
-        &mut self.run_set.insert(run);
+        let _ = &mut self.run_set.insert(run);
         
-        for mut ele in &mut self.row_sets {
+        for ele in &mut self.row_sets {
             ele.remove(&run);
         }
 
-         for mut ele in &mut self.col_sets {
+         for ele in &mut self.col_sets {
             ele.remove(&run);
         }
     }   
@@ -155,7 +155,7 @@ fn part2(file_path : &str) {
             if unfinished_boards.contains(&board.id) {
                 board.add_run(ele);
                 if board.bingo() {
-                    if(unfinished_boards.len() == 1 ){
+                    if unfinished_boards.len() == 1{
                         let sum = board.board_sum();
                         let id = board.id;
                         println!("boardId:{id}");
