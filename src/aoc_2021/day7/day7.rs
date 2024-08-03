@@ -40,12 +40,12 @@ fn part2(file_path:&str) {
 mod tests {
     use super::*;
     #[test]
-    fn test_day6_part1() {
+    fn test_day7_part1() {
         part1("/Users/madvish/code/advent-of-code-rust/src/aoc_2021/day7/input.txt")
     }
     
     #[test]
-    fn test_day6_part2() {
+    fn test_day7_part2() {
         part2("/Users/madvish/code/advent-of-code-rust/src/aoc_2021/day7/input.txt")
     }
 }
